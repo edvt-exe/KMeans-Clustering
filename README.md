@@ -37,7 +37,7 @@ KMeans_Clustering/
 You need Octave. The code only uses basic functions, so it should also run in MATLAB, but I have only tested it in Octave.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/KMeans_Clustering.git
+git clone https://github.com/edvt-exe/KMeans-Clustering
 cd KMeans_Clustering
 octave --persist main.m
 ```
