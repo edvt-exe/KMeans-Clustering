@@ -48,9 +48,22 @@ ratio = original_bits / compressed_bits;
 fprintf('\nTheoretical compression: about %.1f times smaller.\n', ratio);
 
 % save the result and display it
-output_name = sprintf('compressed_K%d.png', K);
-imwrite(compressed_image, output_name);
-fprintf('The compressed image was saved as: %s\n', output_name);
+output_folder = 'compressed';
+
+% create the output folder if it does not exist yet
+if ~exist(output_folder, 'dir')
+  mkdir(output_folder);
+end
+
+% build the output name from the input name, e.g. photo.jpg -> photo_K16.png
+[folder_part, base_name, extension] = fileparts(image_name);
+output_name = sprintf('%s_K%d.png', base_name, K);
+
+% fullfile joins the folder and the file name with the correct separator
+output_path = fullfile(output_folder, output_name);
+
+imwrite(compressed_image, output_path);
+fprintf('The compressed image was saved as: %s\n', output_path);
 
 original_image = reshape(pixels, img_height, img_width, 3);
 show_result(original_image, compressed_image, K);
